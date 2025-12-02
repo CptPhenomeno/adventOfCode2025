@@ -2,13 +2,15 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 )
 
 func main() {
 	inputs := readInputFile()
 	count := CountZeroPointings(inputs)
-	println(count)
+	sum := SumZeroPositions(inputs)
+	fmt.Printf("count: %v sum: %v\n", count, sum)
 }
 
 func readInputFile() []string {
