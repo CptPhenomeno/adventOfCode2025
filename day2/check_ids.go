@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 	"sync"
@@ -23,7 +22,6 @@ func checkIds(min int, max int, wg *sync.WaitGroup, ch chan int) int {
 	sum := 0
 	for i := min; i <= max; i++ {
 		if IsInvalidId(i) {
-			fmt.Printf("Invalid ID: %d\n", i)
 			sum += i
 		}
 	}

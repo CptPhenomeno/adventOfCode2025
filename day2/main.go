@@ -10,7 +10,8 @@ import (
 func main() {
 	inputs := readInputFile()
 	sum := GetInvalidIdsSum(inputs)
-	fmt.Printf("sum: %v\n", sum)
+	sumMulti := GetInvalidMultiIdsSum(inputs)
+	fmt.Printf("sum: %v - sumMulti: %v\n", sum, sumMulti)
 }
 
 func readInputFile() []string {
