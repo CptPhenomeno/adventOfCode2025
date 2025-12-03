@@ -14,7 +14,7 @@ func main() {
 }
 
 func readInputFile() []string {
-	file, err := os.OpenFile("code_input.txt", os.O_RDONLY, 0444)
+	file, err := os.OpenFile("./day1/code_input.txt", os.O_RDONLY, 0444)
 	if err != nil {
 		panic(err)
 	}
