@@ -1,6 +1,7 @@
 package main
 
 import (
+	"adventOfCode2025"
 	"sync"
 )
 
@@ -29,7 +30,7 @@ func CalculateTotalJoltage(banks []string) int {
 	ch := make(chan []int, len(banks))
 	for _, bank := range banks {
 		wg.Add(1)
-		go convertToInts(bank, &wg, ch)
+		go adventOfCode2025.convertToInts(bank, &wg, ch)
 	}
 	wg.Wait()
 	close(ch)

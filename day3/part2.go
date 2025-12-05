@@ -1,6 +1,7 @@
 package main
 
 import (
+	"adventOfCode2025"
 	"sync"
 )
 
@@ -14,14 +15,14 @@ func checkDigits(digits []int, index int, joltage int) {
 
 	if joltage > digits[index] {
 		digits[index] = joltage
-		replaceInSlice(digits, index+1, -1)
+		adventOfCode2025.replaceInSlice(digits, index+1, -1)
 		return
 	}
 	checkDigits(digits, index+1, joltage)
 }
 
 func GenericFindMaxJoltageForBank(bank []int, batteries int) int {
-	digits := rangeOf(-1, batteries)
+	digits := adventOfCode2025.rangeOf(-1, batteries)
 	limit := len(bank) - batteries
 	for _, joltage := range bank[:limit] {
 		checkDigits(digits, 0, joltage)
@@ -30,7 +31,7 @@ func GenericFindMaxJoltageForBank(bank []int, batteries int) int {
 		checkDigits(digits, i, joltage)
 	}
 
-	return fromIntArrayToNumber(digits)
+	return adventOfCode2025.fromIntArrayToNumber(digits)
 }
 
 func GenericCalculateTotalJoltage(banks []string, batteries int) int {
@@ -38,7 +39,7 @@ func GenericCalculateTotalJoltage(banks []string, batteries int) int {
 	ch := make(chan []int, len(banks))
 	for _, bank := range banks {
 		wg.Add(1)
-		go convertToInts(bank, &wg, ch)
+		go adventOfCode2025.convertToInts(bank, &wg, ch)
 	}
 	wg.Wait()
 	close(ch)
