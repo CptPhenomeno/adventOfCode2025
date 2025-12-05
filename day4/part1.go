@@ -1,39 +1,5 @@
 package main
 
-import "fmt"
-
-type Matrix [][]uint8
-
-func NewMatrix(rows, cols int) Matrix {
-	matrix := make(Matrix, rows)
-	for i := 0; i < rows; i++ {
-		matrix[i] = make([]uint8, cols)
-	}
-	return matrix
-}
-
-func (m Matrix) String() string {
-	result := ""
-	for _, row := range m {
-		for _, cell := range row {
-			result += fmt.Sprintf("%d ", cell)
-		}
-		result += "\n"
-	}
-	return result
-}
-
-type Filter [][]uint8
-
-const filterSize = 3
-const filterRadius = filterSize / 2
-
-var kernel = Filter{
-	{1, 1, 1},
-	{1, 0, 1},
-	{1, 1, 1},
-}
-
 func IdentifyValidRollPaper(matrix Matrix) Matrix {
 	rows := len(matrix)
 	cols := len(matrix[0])
@@ -76,15 +42,20 @@ func IdentifyValidRollPaper(matrix Matrix) Matrix {
 	return resultMatrix
 }
 
-func CountValidRollPaper(matrix Matrix) int {
+func CollectRollPaper(matrix Matrix) int {
 	result := IdentifyValidRollPaper(matrix)
 	count := 0
-	for _, row := range result {
-		for _, cell := range row {
+	for r, row := range result {
+		for c, cell := range row {
 			if cell == 2 {
 				count++
+				matrix[r][c] = 0
 			}
 		}
 	}
 	return count
+}
+
+func CountValidRollPaper(matrix Matrix) int {
+	return CollectRollPaper(matrix)
 }

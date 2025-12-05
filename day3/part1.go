@@ -30,7 +30,7 @@ func CalculateTotalJoltage(banks []string) int {
 	ch := make(chan []int, len(banks))
 	for _, bank := range banks {
 		wg.Add(1)
-		go adventOfCode2025.convertToInts(bank, &wg, ch)
+		go adventOfCode2025.ConvertToInts(bank, &wg, ch)
 	}
 	wg.Wait()
 	close(ch)

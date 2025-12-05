@@ -10,8 +10,12 @@ import (
 
 func main() {
 	matrix := readInputFile()
-	result := CountValidRollPaper(matrix)
+	result := CollectRollPaper(matrix)
 	fmt.Printf("result: %v\n", result)
+
+	matrix = readInputFile()
+	total := CollectAllRollPaper(matrix)
+	fmt.Printf("total: %v\n", total)
 }
 
 func readInputFile() Matrix {
